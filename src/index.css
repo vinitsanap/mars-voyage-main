@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 25% 5%;
+    --foreground: 210 40% 95%;
+
+    --card: 230 20% 10%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 230 20% 10%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 15 85% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 60% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 230 15% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 35 90% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 230 15% 20%;
+    --input: 230 15% 20%;
+    --ring: 15 85% 55%;
+
+    --radius: 0.75rem;
+
+    --mars-red: 5 70% 45%;
+    --mars-orange: 25 85% 55%;
+    --space-deep: 230 30% 3%;
+    --space-navy: 225 40% 12%;
+    --star-glow: 45 100% 85%;
+    --engine-fire: 20 95% 50%;
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Space Grotesk', sans-serif;
+
+    --glass-bg: 230 20% 12% / 0.6;
+    --glass-border: 220 20% 30% / 0.3;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+    border-radius: var(--radius);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-accent {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.5), 0 0 40px hsl(var(--accent) / 0.3);
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: hsl(var(--star-glow));
+    animation: twinkle var(--duration, 3s) ease-in-out infinite alternate;
+  }
+
+  .scroll-indicator {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .hotspot-pulse {
+    animation: hotspot-ring 2s ease-in-out infinite;
+  }
+
+  .progress-bar-journey {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, hsl(var(--secondary)), hsl(var(--primary)), hsl(var(--accent)));
+    z-index: 100;
+    transition: width 0.1s linear;
+  }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+@keyframes hotspot-ring {
+  0% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0.6); }
+  70% { box-shadow: 0 0 0 15px hsl(var(--primary) / 0); }
+  100% { box-shadow: 0 0 0 0 hsl(var(--primary) / 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
