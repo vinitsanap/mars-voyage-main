@@ -38,6 +38,7 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm run build
+      - run: touch dist/.nojekyll
       - uses: actions/configure-pages@v4
         with:
           enablement: true
